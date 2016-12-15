@@ -9,7 +9,8 @@ var basepath=process.cwd(),
 var plugins=require('./plugins.js')
 var languages = {
   "en": require("../locale/en/translate.json"),
-  "zh": require("../locale/zh/translate.json")
+  "zh": require("../locale/zh/translate.json"),
+  "zh-CN": require("../locale/zh-CN/translate.json")
 };
 var configs = Object.keys(languages).map(function(language) {
   return {
@@ -34,10 +35,12 @@ var configs = Object.keys(languages).map(function(language) {
         {
           test: /\.css$|\.less$/,
           loader: "style!css!less"
-        }
-        , {
-          test: /\.html$/,
-          loader: "html?config=otherHtmlLoaderConfig"
+        }, {
+          test: /\.ejs$/,
+          loader: "ejs"
+        }, {
+          test: /\.html/,
+          loader: "html?interpolate"
         }]
     },
     resolve: {},
